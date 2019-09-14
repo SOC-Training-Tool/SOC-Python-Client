@@ -22,7 +22,7 @@ class Client:
       state_tracker = strategy.create_state_tracker()
       request = catan_pb2.SubscribeRequest(name=name, game_id=game_id) # TODO: Add position
       for response in stub.Subscribe(request):
-        print(f'Player {name}, client {client_id} received game update: {response}')
+        #print(f'Player {name}, client {client_id} received game update: {response}')
         if response == 'GAME_OVER':
             break
         state_tracker.update(response)
@@ -53,8 +53,9 @@ class Player:
       self.client_id_count += 1
       self.flush()
       args = (self.client_id_count, self.name, game_id, position, self.strategy)
-      thread = threading.Thread(target=Client().run, args=args).start()
+      thread = threading.Thread(target=Client().run, args=args)
       self.clients.append(thread)
+      thread.start()
 
   def flush(self):
     """
@@ -116,15 +117,19 @@ class MyStrategy(StatelessStrategy):
 
 
 
-response = stub.CreateGame(catan_pb2.CreateGameRequest())
-game_id = response.game_id
+
 strategy = MyStrategy()
 players = [Player("Dani", strategy), Player("Greg", strategy), Player("Ronnie", strategy), Player("Ariel", strategy)]
 
-for i, player in enumerate(players):
-    player.play(game_id, position=i + 1)
+SIMULATIONS = 10
 
-stub.StartGame(catan_pb2.StartGameRequest(game_id=game_id))
+for _ in range(0, SIMULATIONS):
+  response = stub.CreateGame(catan_pb2.CreateGameRequest())
+  game_id = response.game_id
+  for i, player in enumerate(players):
+    player.play(game_id, position=i + 1)
+  print(f'Start game {game_id}')
+  stub.StartGame(catan_pb2.StartGameRequest(game_id=game_id))
 
 
 
