@@ -1,15 +1,13 @@
 Install pyenv https://github.com/pyenv/pyenv
 
-and then
+and then pyenv-virtualenv https://github.com/pyenv/pyenv-virtualenv
 
-pyenv-virtualenv https://github.com/pyenv/pyenv-virtualenv
+Make sure to activate your virtual environemnt. Once its activated, download the dependencies.
 
-run:
-
-`pip install grpcio-tools`
+Run: `pip install grpcio-tools`
 
 Then generate the bindings:
-$ `python -m grpc_tools.protoc -I./protos --python_out=. --grpc_python_out=. ./protos/catan.proto`
+`python -m grpc_tools.protoc -I./protos --python_out=. --grpc_python_out=. ./protos/catan.proto`
 
 Finally, run the client (and make sure you have the scala server running locally)
 `python client.py`
