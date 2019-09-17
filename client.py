@@ -2,6 +2,7 @@ import grpc
 from abc import ABC, abstractmethod
 
 import threading
+import time
 
 import catan_pb2_grpc
 import catan_pb2
@@ -18,12 +19,12 @@ class Client:
     to make game decisions.
     """
 
-    def run(self, client_id, name, gamd_id, position, strategy):
+    def run(self, client_id, name, game_id, position, strategy):
       state_tracker = strategy.create_state_tracker()
       request = catan_pb2.SubscribeRequest(name=name, game_id=game_id) # TODO: Add position
       for response in stub.Subscribe(request):
-        #print(f'Player {name}, client {client_id} received game update: {response}')
-        if response == 'GAME_OVER':
+        print(f'Player {name}, Game {game_id} received game update: {response.payload}')
+        if str(response.payload).split(':')[0] == 'GAME OVER':
             break
         state_tracker.update(response)
         if name in response.action_requested_players:
@@ -31,9 +32,10 @@ class Client:
                 state_request = catan_pb2.StateRequest(game_id, position)
                 state = stub.GetState(state_request)
                 state_tracker.update(state)
-                move = strategy.get_move(self.state_tracker)
-                print(f'Player {name}, client {client_id}, making move: {move}')
-                stub.Move(catan_pb2.MoveRequest(move))
+            move = strategy.get_move(self.state_tracker)
+            print(f'Player {name}, client {client_id}, making move: {move}')
+            stub.Move(catan_pb2.MoveRequest(move))
+            stub.AcknowledgeGameStart()
 
 class Player:
 
@@ -121,7 +123,7 @@ class MyStrategy(StatelessStrategy):
 strategy = MyStrategy()
 players = [Player("Dani", strategy), Player("Greg", strategy), Player("Ronnie", strategy), Player("Ariel", strategy)]
 
-SIMULATIONS = 10
+SIMULATIONS = 2
 
 for _ in range(0, SIMULATIONS):
   response = stub.CreateGame(catan_pb2.CreateGameRequest())
@@ -131,6 +133,9 @@ for _ in range(0, SIMULATIONS):
   print(f'Start game {game_id}')
   stub.StartGame(catan_pb2.StartGameRequest(game_id=game_id))
 
-
-
-
+has_active_games = True
+while has_active_games:
+  time.sleep(0.1)
+  has_active_games = any([len(p.clients) > 0 for p in players])
+  for player in players:
+    player.flush()
