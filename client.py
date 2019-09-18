@@ -123,7 +123,7 @@ class MyStrategy(StatelessStrategy):
 strategy = MyStrategy()
 players = [Player("Dani", strategy), Player("Greg", strategy), Player("Ronnie", strategy), Player("Ariel", strategy)]
 
-SIMULATIONS = 2
+SIMULATIONS = 1
 
 for _ in range(0, SIMULATIONS):
   response = stub.CreateGame(catan_pb2.CreateGameRequest())
@@ -131,6 +131,7 @@ for _ in range(0, SIMULATIONS):
   for i, player in enumerate(players):
     player.play(game_id, position=i + 1)
   print(f'Start game {game_id}')
+  time.sleep(3)
   stub.StartGame(catan_pb2.StartGameRequest(game_id=game_id))
 
 has_active_games = True
