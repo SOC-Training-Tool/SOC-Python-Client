@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='soc.protos',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x0b\x63\x61tan.proto\x12\nsoc.protos\"?\n\nGameUpdate\x12 \n\x18\x61\x63tion_requested_players\x18\x01 \x03(\t\x12\x0f\n\x07payload\x18\x02 \x01(\t\"P\n\x10SubscribeRequest\x12\x0f\n\x07game_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0c\n\x04type\x18\x03 \x01(\t\x12\x0f\n\x07postion\x18\x04 \x01(\x05\"@\n\x0bMoveRequest\x12\x0f\n\x07game_id\x18\x01 \x01(\t\x12\x10\n\x08position\x18\x02 \x01(\x05\x12\x0e\n\x06\x61\x63tion\x18\x03 \x01(\t\"\x1e\n\x0cMoveResponse\x12\x0e\n\x06status\x18\x01 \x01(\t\"\x13\n\x11\x43reateGameRequest\"%\n\x12\x43reateGameResponse\x12\x0f\n\x07game_id\x18\x01 \x01(\t\"#\n\x10StartGameRequest\x12\x0f\n\x07game_id\x18\x01 \x01(\t\"\x13\n\x11StartGameResponse2\xac\x02\n\x0b\x43\x61tanServer\x12M\n\nCreateGame\x12\x1d.soc.protos.CreateGameRequest\x1a\x1e.soc.protos.CreateGameResponse\"\x00\x12J\n\tStartGame\x12\x1c.soc.protos.StartGameRequest\x1a\x1d.soc.protos.StartGameResponse\"\x00\x12\x45\n\tSubscribe\x12\x1c.soc.protos.SubscribeRequest\x1a\x16.soc.protos.GameUpdate\"\x00\x30\x01\x12;\n\x04Move\x12\x17.soc.protos.MoveRequest\x1a\x18.soc.protos.MoveResponse\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0b\x63\x61tan.proto\x12\nsoc.protos\"?\n\nGameUpdate\x12 \n\x18\x61\x63tion_requested_players\x18\x01 \x03(\t\x12\x0f\n\x07payload\x18\x02 \x01(\t\"Q\n\x10SubscribeRequest\x12\x0f\n\x07game_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0c\n\x04type\x18\x03 \x01(\t\x12\x10\n\x08position\x18\x04 \x01(\x05\"@\n\x0bMoveRequest\x12\x0f\n\x07game_id\x18\x01 \x01(\t\x12\x10\n\x08position\x18\x02 \x01(\x05\x12\x0e\n\x06\x61\x63tion\x18\x03 \x01(\t\"\x1e\n\x0cMoveResponse\x12\x0e\n\x06status\x18\x01 \x01(\t\"\x13\n\x11\x43reateGameRequest\"%\n\x12\x43reateGameResponse\x12\x0f\n\x07game_id\x18\x01 \x01(\t\"#\n\x10StartGameRequest\x12\x0f\n\x07game_id\x18\x01 \x01(\t\"\x13\n\x11StartGameResponse2\xac\x02\n\x0b\x43\x61tanServer\x12M\n\nCreateGame\x12\x1d.soc.protos.CreateGameRequest\x1a\x1e.soc.protos.CreateGameResponse\"\x00\x12J\n\tStartGame\x12\x1c.soc.protos.StartGameRequest\x1a\x1d.soc.protos.StartGameResponse\"\x00\x12\x45\n\tSubscribe\x12\x1c.soc.protos.SubscribeRequest\x1a\x16.soc.protos.GameUpdate\"\x00\x30\x01\x12;\n\x04Move\x12\x17.soc.protos.MoveRequest\x1a\x18.soc.protos.MoveResponse\"\x00\x62\x06proto3')
 )
 
 
@@ -93,7 +93,7 @@ _SUBSCRIBEREQUEST = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='postion', full_name='soc.protos.SubscribeRequest.postion', index=3,
+      name='position', full_name='soc.protos.SubscribeRequest.position', index=3,
       number=4, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -112,7 +112,7 @@ _SUBSCRIBEREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=92,
-  serialized_end=172,
+  serialized_end=173,
 )
 
 
@@ -156,8 +156,8 @@ _MOVEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=174,
-  serialized_end=238,
+  serialized_start=175,
+  serialized_end=239,
 )
 
 
@@ -187,8 +187,8 @@ _MOVERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=240,
-  serialized_end=270,
+  serialized_start=241,
+  serialized_end=271,
 )
 
 
@@ -211,8 +211,8 @@ _CREATEGAMEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=272,
-  serialized_end=291,
+  serialized_start=273,
+  serialized_end=292,
 )
 
 
@@ -242,8 +242,8 @@ _CREATEGAMERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=293,
-  serialized_end=330,
+  serialized_start=294,
+  serialized_end=331,
 )
 
 
@@ -273,8 +273,8 @@ _STARTGAMEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=332,
-  serialized_end=367,
+  serialized_start=333,
+  serialized_end=368,
 )
 
 
@@ -297,8 +297,8 @@ _STARTGAMERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=369,
-  serialized_end=388,
+  serialized_start=370,
+  serialized_end=389,
 )
 
 DESCRIPTOR.message_types_by_name['GameUpdate'] = _GAMEUPDATE
@@ -375,8 +375,8 @@ _CATANSERVER = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=391,
-  serialized_end=691,
+  serialized_start=392,
+  serialized_end=692,
   methods=[
   _descriptor.MethodDescriptor(
     name='CreateGame',

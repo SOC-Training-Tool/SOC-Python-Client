@@ -20,8 +20,9 @@ class Client:
     """
 
     def run(self, client_id, name, game_id, position, strategy):
+      time.sleep(0.1)
       state_tracker = strategy.create_state_tracker()
-      request = catan_pb2.SubscribeRequest(name=name, game_id=game_id) # TODO: Add position
+      request = catan_pb2.SubscribeRequest(name=name, game_id=game_id, position=position)
       for response in stub.Subscribe(request):
         print(f'Player {name}, Game {game_id} received game update: {response.payload}')
         if str(response.payload).split(':')[0] == 'GAME OVER':
@@ -29,13 +30,12 @@ class Client:
         state_tracker.update(response)
         if name in response.action_requested_players:
             if strategy.should_request_state(state_tracker):
-                state_request = catan_pb2.StateRequest(game_id, position)
-                state = stub.GetState(state_request)
-                state_tracker.update(state)
-            move = strategy.get_move(self.state_tracker)
-            print(f'Player {name}, client {client_id}, making move: {move}')
-            stub.Move(catan_pb2.MoveRequest(move))
-            stub.AcknowledgeGameStart()
+                #state_request = catan_pb2.StateRequest(game_id, position)
+                #state = stub.GetState(state_request)
+                state_tracker.update(None)
+            move = strategy.get_move(state_tracker)
+            print(f'Player {name}, client {client_id}, game {game_id} making move: {move}')
+            stub.Move(catan_pb2.MoveRequest(game_id=game_id, position=position, action=move))
 
 class Player:
 
@@ -76,11 +76,11 @@ class Strategy(ABC):
         pass
 
     @abstractmethod
-    def should_request_state(self):
+    def should_request_state(self, state_tracker):
         pass
 
     @abstractmethod
-    def get_move(self,state_tracker):
+    def get_move(self, state_tracker):
         pass
 
 class StatelessStrategy(Strategy):
@@ -100,11 +100,11 @@ class StatelessStrategy(Strategy):
     def create_state_tracker(self):
       return StatelessStrategy.StateTracker()
 
-    def should_request_state(self):
+    def should_request_state(self, state_tracker):
       return True
 
     def get_move(self, state_tracker):
-      return self.get_stateless_move(state_tracker.current_state)
+      return self.get_stateless_move(state_tracker.state)
 
     @abstractmethod
     def get_stateless_move(self, current_state):
@@ -115,7 +115,7 @@ class MyStrategy(StatelessStrategy):
     def get_stateless_move(self, current_state):
       # TODO Implement a strategy, where current state is a schema defined in CatanAI google doc
       # Should return some type of well defined move object
-      return None
+      return ""
 
 
 
@@ -129,9 +129,9 @@ for _ in range(0, SIMULATIONS):
   response = stub.CreateGame(catan_pb2.CreateGameRequest())
   game_id = response.game_id
   for i, player in enumerate(players):
-    player.play(game_id, position=i + 1)
+    player.play(game_id, position=i)
   print(f'Start game {game_id}')
-  time.sleep(3)
+  time.sleep(1)
   stub.StartGame(catan_pb2.StartGameRequest(game_id=game_id))
 
 has_active_games = True
