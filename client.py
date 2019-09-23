@@ -24,18 +24,22 @@ class Client:
       state_tracker = strategy.create_state_tracker()
       request = catan_pb2.SubscribeRequest(name=name, game_id=game_id, position=position)
       for response in stub.Subscribe(request):
-        print(f'Player {name}, Game {game_id} received game update: {response.payload}')
-        if str(response.payload).split(':')[0] == 'GAME OVER':
-            break
-        state_tracker.update(response)
-        if name in response.action_requested_players:
-            if strategy.should_request_state(state_tracker):
-                #state_request = catan_pb2.StateRequest(game_id, position)
-                #state = stub.GetState(state_request)
-                state_tracker.update(None)
-            move = strategy.get_move(state_tracker)
-            print(f'Player {name}, client {client_id}, game {game_id} making move: {move}')
-            stub.Move(catan_pb2.MoveRequest(game_id=game_id, position=position, action=move))
+        if response.HasField("event"):
+            print(f'Received game event position {response.event.position}: {catan_pb2.GameAction.Name(response.event.action)}')
+            if response.event.message == "GAME OVER":
+                break
+            state_tracker.update(response)
+        if response.HasField("request"):
+            print(f'Action Request player {response.request.position}: {catan_pb2.ActionRequest.ActionRequestType.Name(response.request.type)}')
+            if position == response.request.position:
+              if strategy.should_request_state(state_tracker):
+                  #state_request = catan_pb2.StateRequest(game_id, position)
+                  #state = stub.GetState(state_request)
+                  state_tracker.update(None)
+              move = strategy.get_move(state_tracker)
+              #print(f'Player {name}, client {client_id}, game {game_id} making move: {move}')
+              #print(f'Player {name}, client {client_id}, game {game_id} take action')
+              stub.TakeAction(catan_pb2.TakeActionRequest(game_id=game_id, position=position))
 
 class Player:
 

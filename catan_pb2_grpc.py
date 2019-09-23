@@ -5,8 +5,8 @@ import catan_pb2 as catan__pb2
 
 
 class CatanServerStub(object):
-  """All RPCs must have a request and response message, even if empty
-  """
+  # missing associated documentation comment in .proto file
+  pass
 
   def __init__(self, channel):
     """Constructor.
@@ -27,18 +27,18 @@ class CatanServerStub(object):
     self.Subscribe = channel.unary_stream(
         '/soc.protos.CatanServer/Subscribe',
         request_serializer=catan__pb2.SubscribeRequest.SerializeToString,
-        response_deserializer=catan__pb2.GameUpdate.FromString,
+        response_deserializer=catan__pb2.GameMessage.FromString,
         )
-    self.Move = channel.unary_unary(
-        '/soc.protos.CatanServer/Move',
-        request_serializer=catan__pb2.MoveRequest.SerializeToString,
+    self.TakeAction = channel.unary_unary(
+        '/soc.protos.CatanServer/TakeAction',
+        request_serializer=catan__pb2.TakeActionRequest.SerializeToString,
         response_deserializer=catan__pb2.MoveResponse.FromString,
         )
 
 
 class CatanServerServicer(object):
-  """All RPCs must have a request and response message, even if empty
-  """
+  # missing associated documentation comment in .proto file
+  pass
 
   def CreateGame(self, request, context):
     # missing associated documentation comment in .proto file
@@ -55,13 +55,13 @@ class CatanServerServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def Subscribe(self, request, context):
-    """Subscribe to a game to recieve all its notifications
-    """
+    # missing associated documentation comment in .proto file
+    pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def Move(self, request, context):
+  def TakeAction(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -84,11 +84,11 @@ def add_CatanServerServicer_to_server(servicer, server):
       'Subscribe': grpc.unary_stream_rpc_method_handler(
           servicer.Subscribe,
           request_deserializer=catan__pb2.SubscribeRequest.FromString,
-          response_serializer=catan__pb2.GameUpdate.SerializeToString,
+          response_serializer=catan__pb2.GameMessage.SerializeToString,
       ),
-      'Move': grpc.unary_unary_rpc_method_handler(
-          servicer.Move,
-          request_deserializer=catan__pb2.MoveRequest.FromString,
+      'TakeAction': grpc.unary_unary_rpc_method_handler(
+          servicer.TakeAction,
+          request_deserializer=catan__pb2.TakeActionRequest.FromString,
           response_serializer=catan__pb2.MoveResponse.SerializeToString,
       ),
   }
