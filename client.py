@@ -25,7 +25,8 @@ class Client:
       request = catan_pb2.SubscribeRequest(name=name, game_id=game_id, position=position)
       for response in stub.Subscribe(request):
         if response.HasField("event"):
-            print(f'Received game event position {response.event.position}: {catan_pb2.GameAction.Name(response.event.action)}')
+            msg = f'Message: {response.event.message}' if response.event.message else ''
+            print(f'Received game event position {response.event.position}: {catan_pb2.GameAction.Name(response.event.action)} {msg}')
             if response.event.message == "GAME OVER":
                 break
             state_tracker.update(response)
