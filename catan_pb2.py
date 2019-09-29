@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='soc.protos',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x0b\x63\x61tan.proto\x12\nsoc.protos\"n\n\x0bGameMessage\x12,\n\x07request\x18\x01 \x01(\x0b\x32\x19.soc.protos.ActionRequestH\x00\x12&\n\x05\x65vent\x18\x02 \x01(\x0b\x32\x15.soc.protos.GameEventH\x00\x42\t\n\x07payload\"\xc7\x02\n\rActionRequest\x12\x10\n\x08position\x18\x01 \x01(\x05\x12\x39\n\x04type\x18\x02 \x01(\x0e\x32+.soc.protos.ActionRequest.ActionRequestType\"\xe8\x01\n\x11\x41\x63tionRequestType\x12\x14\n\x10\x41\x43KNOWLEDGE_PING\x10\x00\x12\x1a\n\x16\x41\x43KNOWLEDGE_START_GAME\x10\x01\x12\x1c\n\x18PLACE_INITIAL_SETTLEMENT\x10\x02\x12\x0e\n\nSTART_TURN\x10\x03\x12\"\n\x1e\x42UILD_OR_TRADE_OR_PLAY_OR_PASS\x10\x04\x12\x0f\n\x0bMOVE_ROBBER\x10\x05\x12\x0b\n\x07\x44ISCARD\x10\x06\x12\x1a\n\x16\x41\x43\x43\x45PT_OR_REJECT_TRADE\x10\x07\x12\x15\n\x11\x41\x43KNOWLEDGE_TRADE\x10\x08\"\xb8\x01\n\tGameEvent\x12\x10\n\x08position\x18\x01 \x01(\x05\x12&\n\x06\x61\x63tion\x18\x02 \x01(\x0e\x32\x16.soc.protos.GameAction\x12\x36\n\rspecification\x18\x03 \x01(\x0b\x32\x1f.soc.protos.ActionSpecification\x12(\n\x06result\x18\x04 \x01(\x0b\x32\x18.soc.protos.ActionResult\x12\x0f\n\x07message\x18\x05 \x01(\t\"\xd9\x01\n\x13\x41\x63tionSpecification\x12\x0b\n\x03hex\x18\x02 \x01(\t\x12\x0e\n\x06vertex\x18\x03 \x01(\t\x12\x1e\n\x04\x65\x64ge\x18\x04 \x01(\x0b\x32\x10.soc.protos.Edge\x12\x1f\n\x05\x65\x64ges\x18\x05 \x03(\x0b\x32\x10.soc.protos.Edge\x12\x1d\n\x15other_player_position\x18\x07 \x01(\x05\x12!\n\x03\x61sk\x18\x08 \x03(\x0e\x32\x14.soc.protos.Resource\x12\"\n\x04give\x18\t \x03(\x0e\x32\x14.soc.protos.Resource\"\x1e\n\x04\x45\x64ge\x12\n\n\x02v1\x18\x01 \x01(\t\x12\n\n\x02v2\x18\x02 \x01(\t\"\xf0\x01\n\x0c\x41\x63tionResult\x12\x0c\n\x04roll\x18\x01 \x01(\x05\x12$\n\x04\x63\x61rd\x18\x02 \x01(\x0b\x32\x16.soc.protos.HiddenCard\x12O\n\x14resources_transacted\x18\x03 \x03(\x0b\x32\x31.soc.protos.ActionResult.ResourcesTransactedEntry\x1a[\n\x18ResourcesTransactedEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12.\n\x05value\x18\x02 \x01(\x0b\x32\x1f.soc.protos.ResourceTransaction:\x02\x38\x01\"]\n\x13ResourceTransaction\x12\"\n\x04gain\x18\x01 \x03(\x0e\x32\x14.soc.protos.Resource\x12\"\n\x04lose\x18\x02 \x03(\x0e\x32\x14.soc.protos.Resource\"\x99\x01\n\nHiddenCard\x12\x1d\n\x15viewable_by_positions\x18\x01 \x03(\x05\x12(\n\x08resource\x18\x02 \x01(\x0e\x32\x14.soc.protos.ResourceH\x00\x12\x37\n\x10\x64\x65velopment_card\x18\x03 \x01(\x0e\x32\x1b.soc.protos.DevelopmentCardH\x00\x42\t\n\x07payload\"\x9d\x01\n\x11TakeActionRequest\x12\x0f\n\x07game_id\x18\x01 \x01(\t\x12\x10\n\x08position\x18\x02 \x01(\x05\x12&\n\x06\x61\x63tion\x18\x03 \x01(\x0e\x32\x16.soc.protos.GameAction\x12=\n\x14\x61\x63tion_specification\x18\x04 \x01(\x0b\x32\x1f.soc.protos.ActionSpecification\"Q\n\x10SubscribeRequest\x12\x0f\n\x07game_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0c\n\x04type\x18\x03 \x01(\t\x12\x10\n\x08position\x18\x04 \x01(\x05\"\x1e\n\x0cMoveResponse\x12\x0e\n\x06status\x18\x01 \x01(\t\"\x13\n\x11\x43reateGameRequest\"%\n\x12\x43reateGameResponse\x12\x0f\n\x07game_id\x18\x01 \x01(\t\"#\n\x10StartGameRequest\x12\x0f\n\x07game_id\x18\x01 \x01(\t\"\x13\n\x11StartGameResponse*\x8d\x03\n\nGameAction\x12\x14\n\x10GAME_ACTION_NONE\x10\x00\x12\x15\n\x11INITIAL_PLACEMENT\x10\x01\x12\r\n\tROLL_DICE\x10\x02\x12\x19\n\x15MOVE_ROBBER_AND_STEAL\x10\x03\x12\x0e\n\nBUILD_ROAD\x10\x04\x12\x14\n\x10\x42UILD_SETTLEMENT\x10\x05\x12\x0e\n\nBUILD_CITY\x10\x06\x12\x1a\n\x16\x42UILD_DEVELOPMENT_CARD\x10\x07\x12\x13\n\x0f\x41\x43TIVATE_KNIGHT\x10\x08\x12\x1a\n\x16\x41\x43TIVATE_ROAD_BUILDING\x10\t\x12\x1b\n\x17\x41\x43TIVATE_YEAR_OF_PLENTY\x10\n\x12\x15\n\x11\x41\x43TIVATE_MONOPOLY\x10\x0b\x12\x11\n\rPROPOSE_TRADE\x10\x0c\x12\x0e\n\nPORT_TRADE\x10\r\x12\x10\n\x0c\x41\x43\x43\x45PT_TRADE\x10\x0e\x12\x10\n\x0cREJECT_TRADE\x10\x0f\x12\x0b\n\x07\x44ISCARD\x10\x10\x12\x0c\n\x08\x45ND_TURN\x10\x11\x12\x0f\n\x0b\x41\x43KNOWLEDGE\x10\x12*Q\n\x08Resource\x12\x11\n\rRESOURCE_NONE\x10\x00\x12\t\n\x05\x42RICK\x10\x01\x12\x07\n\x03ORE\x10\x02\x12\t\n\x05SHEEP\x10\x03\x12\t\n\x05WHEAT\x10\x04\x12\x08\n\x04WOOD\x10\x05*\x80\x01\n\x0f\x44\x65velopmentCard\x12\x19\n\x15\x44\x45VELOPMENT_CARD_NONE\x10\x00\x12\n\n\x06KNIGHT\x10\x01\x12\x11\n\rVICTORY_POINT\x10\x02\x12\x12\n\x0eYEAR_OF_PLENTY\x10\x03\x12\x11\n\rROAD_BUILDING\x10\x04\x12\x0c\n\x08MONOPOLY\x10\x05\x32\xb9\x02\n\x0b\x43\x61tanServer\x12M\n\nCreateGame\x12\x1d.soc.protos.CreateGameRequest\x1a\x1e.soc.protos.CreateGameResponse\"\x00\x12J\n\tStartGame\x12\x1c.soc.protos.StartGameRequest\x1a\x1d.soc.protos.StartGameResponse\"\x00\x12\x46\n\tSubscribe\x12\x1c.soc.protos.SubscribeRequest\x1a\x17.soc.protos.GameMessage\"\x00\x30\x01\x12G\n\nTakeAction\x12\x1d.soc.protos.TakeActionRequest\x1a\x18.soc.protos.MoveResponse\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0b\x63\x61tan.proto\x12\nsoc.protos\"n\n\x0bGameMessage\x12,\n\x07request\x18\x01 \x01(\x0b\x32\x19.soc.protos.ActionRequestH\x00\x12&\n\x05\x65vent\x18\x02 \x01(\x0b\x32\x15.soc.protos.GameEventH\x00\x42\t\n\x07payload\"\xe5\x02\n\rActionRequest\x12\x10\n\x08position\x18\x01 \x01(\x05\x12\x39\n\x04type\x18\x02 \x01(\x0e\x32+.soc.protos.ActionRequest.ActionRequestType\"\x86\x02\n\x11\x41\x63tionRequestType\x12\x14\n\x10\x41\x43KNOWLEDGE_PING\x10\x00\x12\x1a\n\x16\x41\x43KNOWLEDGE_START_GAME\x10\x01\x12\x1c\n\x18PLACE_INITIAL_SETTLEMENT\x10\x02\x12\x0e\n\nSTART_TURN\x10\x03\x12\"\n\x1e\x42UILD_OR_TRADE_OR_PLAY_OR_PASS\x10\x04\x12\x0f\n\x0bMOVE_ROBBER\x10\x05\x12\x0b\n\x07\x44ISCARD\x10\x06\x12\x12\n\x0e\x45VALUATE_TRADE\x10\x07\x12 \n\x1c\x43OUNTER_OR_ACKNOWLEDGE_TRADE\x10\x08\x12\x19\n\x15PROPOSE_TRADE_OR_PASS\x10\t\"\xb8\x01\n\tGameEvent\x12\x10\n\x08position\x18\x01 \x01(\x05\x12&\n\x06\x61\x63tion\x18\x02 \x01(\x0e\x32\x16.soc.protos.GameAction\x12\x36\n\rspecification\x18\x03 \x01(\x0b\x32\x1f.soc.protos.ActionSpecification\x12(\n\x06result\x18\x04 \x01(\x0b\x32\x18.soc.protos.ActionResult\x12\x0f\n\x07message\x18\x05 \x01(\t\"\xba\x01\n\x13\x41\x63tionSpecification\x12\x0b\n\x03hex\x18\x01 \x01(\t\x12\x0e\n\x06vertex\x18\x02 \x01(\t\x12\x1f\n\x05\x65\x64ges\x18\x03 \x03(\x0b\x32\x10.soc.protos.Edge\x12\x1e\n\x16other_player_positions\x18\x04 \x03(\x05\x12!\n\x03\x61sk\x18\x05 \x03(\x0e\x32\x14.soc.protos.Resource\x12\"\n\x04give\x18\x06 \x03(\x0e\x32\x14.soc.protos.Resource\"\x1e\n\x04\x45\x64ge\x12\n\n\x02v1\x18\x01 \x01(\t\x12\n\n\x02v2\x18\x02 \x01(\t\"\xf0\x01\n\x0c\x41\x63tionResult\x12\x0c\n\x04roll\x18\x01 \x01(\x05\x12$\n\x04\x63\x61rd\x18\x02 \x01(\x0b\x32\x16.soc.protos.HiddenCard\x12O\n\x14resources_transacted\x18\x03 \x03(\x0b\x32\x31.soc.protos.ActionResult.ResourcesTransactedEntry\x1a[\n\x18ResourcesTransactedEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12.\n\x05value\x18\x02 \x01(\x0b\x32\x1f.soc.protos.ResourceTransaction:\x02\x38\x01\"]\n\x13ResourceTransaction\x12\"\n\x04gain\x18\x01 \x03(\x0e\x32\x14.soc.protos.Resource\x12\"\n\x04lose\x18\x02 \x03(\x0e\x32\x14.soc.protos.Resource\"\x99\x01\n\nHiddenCard\x12\x1d\n\x15viewable_by_positions\x18\x01 \x03(\x05\x12(\n\x08resource\x18\x02 \x01(\x0e\x32\x14.soc.protos.ResourceH\x00\x12\x37\n\x10\x64\x65velopment_card\x18\x03 \x01(\x0e\x32\x1b.soc.protos.DevelopmentCardH\x00\x42\t\n\x07payload\"\x9d\x01\n\x11TakeActionRequest\x12\x0f\n\x07game_id\x18\x01 \x01(\t\x12\x10\n\x08position\x18\x02 \x01(\x05\x12&\n\x06\x61\x63tion\x18\x03 \x01(\x0e\x32\x16.soc.protos.GameAction\x12=\n\x14\x61\x63tion_specification\x18\x04 \x01(\x0b\x32\x1f.soc.protos.ActionSpecification\"Q\n\x10SubscribeRequest\x12\x0f\n\x07game_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0c\n\x04type\x18\x03 \x01(\t\x12\x10\n\x08position\x18\x04 \x01(\x05\"\x1e\n\x0cMoveResponse\x12\x0e\n\x06status\x18\x01 \x01(\t\"\x13\n\x11\x43reateGameRequest\"%\n\x12\x43reateGameResponse\x12\x0f\n\x07game_id\x18\x01 \x01(\t\"#\n\x10StartGameRequest\x12\x0f\n\x07game_id\x18\x01 \x01(\t\"\x13\n\x11StartGameResponse*\x8d\x03\n\nGameAction\x12\x14\n\x10GAME_ACTION_NONE\x10\x00\x12\x15\n\x11INITIAL_PLACEMENT\x10\x01\x12\r\n\tROLL_DICE\x10\x02\x12\x19\n\x15MOVE_ROBBER_AND_STEAL\x10\x03\x12\x0e\n\nBUILD_ROAD\x10\x04\x12\x14\n\x10\x42UILD_SETTLEMENT\x10\x05\x12\x0e\n\nBUILD_CITY\x10\x06\x12\x1a\n\x16\x42UILD_DEVELOPMENT_CARD\x10\x07\x12\x13\n\x0f\x41\x43TIVATE_KNIGHT\x10\x08\x12\x1a\n\x16\x41\x43TIVATE_ROAD_BUILDING\x10\t\x12\x1b\n\x17\x41\x43TIVATE_YEAR_OF_PLENTY\x10\n\x12\x15\n\x11\x41\x43TIVATE_MONOPOLY\x10\x0b\x12\x11\n\rPROPOSE_TRADE\x10\x0c\x12\x0e\n\nPORT_TRADE\x10\r\x12\x10\n\x0c\x41\x43\x43\x45PT_TRADE\x10\x0e\x12\x10\n\x0cREJECT_TRADE\x10\x0f\x12\x0b\n\x07\x44ISCARD\x10\x10\x12\x0c\n\x08\x45ND_TURN\x10\x11\x12\x0f\n\x0b\x41\x43KNOWLEDGE\x10\x12*Q\n\x08Resource\x12\x11\n\rRESOURCE_NONE\x10\x00\x12\t\n\x05\x42RICK\x10\x01\x12\x07\n\x03ORE\x10\x02\x12\t\n\x05SHEEP\x10\x03\x12\t\n\x05WHEAT\x10\x04\x12\x08\n\x04WOOD\x10\x05*\x80\x01\n\x0f\x44\x65velopmentCard\x12\x19\n\x15\x44\x45VELOPMENT_CARD_NONE\x10\x00\x12\n\n\x06KNIGHT\x10\x01\x12\x11\n\rVICTORY_POINT\x10\x02\x12\x12\n\x0eYEAR_OF_PLENTY\x10\x03\x12\x11\n\rROAD_BUILDING\x10\x04\x12\x0c\n\x08MONOPOLY\x10\x05\x32\xb9\x02\n\x0b\x43\x61tanServer\x12M\n\nCreateGame\x12\x1d.soc.protos.CreateGameRequest\x1a\x1e.soc.protos.CreateGameResponse\"\x00\x12J\n\tStartGame\x12\x1c.soc.protos.StartGameRequest\x1a\x1d.soc.protos.StartGameResponse\"\x00\x12\x46\n\tSubscribe\x12\x1c.soc.protos.SubscribeRequest\x1a\x17.soc.protos.GameMessage\"\x00\x30\x01\x12G\n\nTakeAction\x12\x1d.soc.protos.TakeActionRequest\x1a\x18.soc.protos.MoveResponse\"\x00\x62\x06proto3')
 )
 
 _GAMEACTION = _descriptor.EnumDescriptor(
@@ -109,8 +109,8 @@ _GAMEACTION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1796,
-  serialized_end=2193,
+  serialized_start=1795,
+  serialized_end=2192,
 )
 _sym_db.RegisterEnumDescriptor(_GAMEACTION)
 
@@ -148,8 +148,8 @@ _RESOURCE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2195,
-  serialized_end=2276,
+  serialized_start=2194,
+  serialized_end=2275,
 )
 _sym_db.RegisterEnumDescriptor(_RESOURCE)
 
@@ -187,8 +187,8 @@ _DEVELOPMENTCARD = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2279,
-  serialized_end=2407,
+  serialized_start=2278,
+  serialized_end=2406,
 )
 _sym_db.RegisterEnumDescriptor(_DEVELOPMENTCARD)
 
@@ -261,18 +261,22 @@ _ACTIONREQUEST_ACTIONREQUESTTYPE = _descriptor.EnumDescriptor(
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='ACCEPT_OR_REJECT_TRADE', index=7, number=7,
+      name='EVALUATE_TRADE', index=7, number=7,
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='ACKNOWLEDGE_TRADE', index=8, number=8,
+      name='COUNTER_OR_ACKNOWLEDGE_TRADE', index=8, number=8,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='PROPOSE_TRADE_OR_PASS', index=9, number=9,
       serialized_options=None,
       type=None),
   ],
   containing_type=None,
   serialized_options=None,
   serialized_start=235,
-  serialized_end=467,
+  serialized_end=497,
 )
 _sym_db.RegisterEnumDescriptor(_ACTIONREQUEST_ACTIONREQUESTTYPE)
 
@@ -353,7 +357,7 @@ _ACTIONREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=140,
-  serialized_end=467,
+  serialized_end=497,
 )
 
 
@@ -411,8 +415,8 @@ _GAMEEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=470,
-  serialized_end=654,
+  serialized_start=500,
+  serialized_end=684,
 )
 
 
@@ -425,49 +429,42 @@ _ACTIONSPECIFICATION = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='hex', full_name='soc.protos.ActionSpecification.hex', index=0,
-      number=2, type=9, cpp_type=9, label=1,
+      number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='vertex', full_name='soc.protos.ActionSpecification.vertex', index=1,
-      number=3, type=9, cpp_type=9, label=1,
+      number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='edge', full_name='soc.protos.ActionSpecification.edge', index=2,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='edges', full_name='soc.protos.ActionSpecification.edges', index=3,
-      number=5, type=11, cpp_type=10, label=3,
+      name='edges', full_name='soc.protos.ActionSpecification.edges', index=2,
+      number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='other_player_position', full_name='soc.protos.ActionSpecification.other_player_position', index=4,
-      number=7, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='ask', full_name='soc.protos.ActionSpecification.ask', index=5,
-      number=8, type=14, cpp_type=8, label=3,
+      name='other_player_positions', full_name='soc.protos.ActionSpecification.other_player_positions', index=3,
+      number=4, type=5, cpp_type=1, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='give', full_name='soc.protos.ActionSpecification.give', index=6,
-      number=9, type=14, cpp_type=8, label=3,
+      name='ask', full_name='soc.protos.ActionSpecification.ask', index=4,
+      number=5, type=14, cpp_type=8, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='give', full_name='soc.protos.ActionSpecification.give', index=5,
+      number=6, type=14, cpp_type=8, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -484,8 +481,8 @@ _ACTIONSPECIFICATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=657,
-  serialized_end=874,
+  serialized_start=687,
+  serialized_end=873,
 )
 
 
@@ -522,8 +519,8 @@ _EDGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=876,
-  serialized_end=906,
+  serialized_start=875,
+  serialized_end=905,
 )
 
 
@@ -560,8 +557,8 @@ _ACTIONRESULT_RESOURCESTRANSACTEDENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1058,
-  serialized_end=1149,
+  serialized_start=1057,
+  serialized_end=1148,
 )
 
 _ACTIONRESULT = _descriptor.Descriptor(
@@ -604,8 +601,8 @@ _ACTIONRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=909,
-  serialized_end=1149,
+  serialized_start=908,
+  serialized_end=1148,
 )
 
 
@@ -642,8 +639,8 @@ _RESOURCETRANSACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1151,
-  serialized_end=1244,
+  serialized_start=1150,
+  serialized_end=1243,
 )
 
 
@@ -690,8 +687,8 @@ _HIDDENCARD = _descriptor.Descriptor(
       name='payload', full_name='soc.protos.HiddenCard.payload',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=1247,
-  serialized_end=1400,
+  serialized_start=1246,
+  serialized_end=1399,
 )
 
 
@@ -742,8 +739,8 @@ _TAKEACTIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1403,
-  serialized_end=1560,
+  serialized_start=1402,
+  serialized_end=1559,
 )
 
 
@@ -794,8 +791,8 @@ _SUBSCRIBEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1562,
-  serialized_end=1643,
+  serialized_start=1561,
+  serialized_end=1642,
 )
 
 
@@ -825,8 +822,8 @@ _MOVERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1645,
-  serialized_end=1675,
+  serialized_start=1644,
+  serialized_end=1674,
 )
 
 
@@ -849,8 +846,8 @@ _CREATEGAMEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1677,
-  serialized_end=1696,
+  serialized_start=1676,
+  serialized_end=1695,
 )
 
 
@@ -880,8 +877,8 @@ _CREATEGAMERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1698,
-  serialized_end=1735,
+  serialized_start=1697,
+  serialized_end=1734,
 )
 
 
@@ -911,8 +908,8 @@ _STARTGAMEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1737,
-  serialized_end=1772,
+  serialized_start=1736,
+  serialized_end=1771,
 )
 
 
@@ -935,8 +932,8 @@ _STARTGAMERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1774,
-  serialized_end=1793,
+  serialized_start=1773,
+  serialized_end=1792,
 )
 
 _GAMEMESSAGE.fields_by_name['request'].message_type = _ACTIONREQUEST
@@ -952,7 +949,6 @@ _ACTIONREQUEST_ACTIONREQUESTTYPE.containing_type = _ACTIONREQUEST
 _GAMEEVENT.fields_by_name['action'].enum_type = _GAMEACTION
 _GAMEEVENT.fields_by_name['specification'].message_type = _ACTIONSPECIFICATION
 _GAMEEVENT.fields_by_name['result'].message_type = _ACTIONRESULT
-_ACTIONSPECIFICATION.fields_by_name['edge'].message_type = _EDGE
 _ACTIONSPECIFICATION.fields_by_name['edges'].message_type = _EDGE
 _ACTIONSPECIFICATION.fields_by_name['ask'].enum_type = _RESOURCE
 _ACTIONSPECIFICATION.fields_by_name['give'].enum_type = _RESOURCE
@@ -1114,8 +1110,8 @@ _CATANSERVER = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=2410,
-  serialized_end=2723,
+  serialized_start=2409,
+  serialized_end=2722,
   methods=[
   _descriptor.MethodDescriptor(
     name='CreateGame',
